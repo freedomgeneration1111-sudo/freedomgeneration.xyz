@@ -1,0 +1,4 @@
+# Cloudflare Pages — static site from `out/` plus Pages Functions in `functions/`
+name = "freedom-generation"
+compatibility_date = "2026-09-01"
+pages_build_output_dir = "out"

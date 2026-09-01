@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+/* Design system — locked per CLAUDE.md / memory file §35 */
+@theme {
+  --color-paper: #fffefa;
+  --color-ink: #121212;
+  --color-green: #01411c;
+  --color-green-light: #0a5c2e;
+  --color-clay: #e8ddd0;
+  --color-stone: #d8d0c5;
+  --color-error: #8b1e1e;
+}
+
+@theme inline {
+  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-plex-sans), system-ui, "Segoe UI", Arial, sans-serif;
+  --font-urdu: var(--font-nastaliq), "Noto Nastaliq Urdu", "Urdu Typesetting", serif;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem; /* 17px body, editorial */
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 1.125rem; /* 18px on wider screens */
+  }
+}
+
+/* Urdu locale — Noto Nastaliq Urdu everywhere, line-height 2.0 (memory file §35) */
+html[lang="ur"] {
+  --font-serif: var(--font-urdu);
+  --font-sans: var(--font-urdu);
+}
+html[lang="ur"] :is(h1, h2, h3, h4, h5, h6, p, li, blockquote, figcaption, a, td, th, dt, dd, label, button, summary, input, textarea, select) {
+  line-height: 2;
+}
+
+a {
+  text-underline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-clay);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* The signature mark: a progress bar that emphasizes what REMAINS.
+   The done segment is quiet green; the remaining segment is hatched stone
+   and carries the label. */
+.remains-hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-stone),
+    var(--color-stone) 3px,
+    var(--color-paper) 3px,
+    var(--color-paper) 8px
+  );
+}
+
+/* Editorial prose for rendered markdown (content is first-party) */
+.prose-fg {
+  font-family: var(--font-serif);
+}
+.prose-fg > * + * {
+  margin-top: 1.1em;
+}
+.prose-fg h2,
+.prose-fg h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 1.8em;
+}
+.prose-fg h2 {
+  font-size: 1.35em;
+}
+.prose-fg h3 {
+  font-size: 1.15em;
+}
+.prose-fg strong {
+  font-weight: 600;
+}
+.prose-fg em {
+  font-style: italic;
+}
+.prose-fg a {
+  color: var(--color-green);
+  text-decoration: underline;
+}
+.prose-fg a:hover {
+  color: var(--color-green-light);
+}
+.prose-fg ul {
+  list-style: disc;
+  padding-inline-start: 1.4em;
+}
+.prose-fg ol {
+  list-style: decimal;
+  padding-inline-start: 1.4em;
+}
+.prose-fg li + li {
+  margin-top: 0.35em;
+}
+.prose-fg blockquote {
+  background: var(--color-clay);
+  padding: 1.1em 1.4em;
+  font-style: italic;
+}
+.prose-fg blockquote p + p {
+  margin-top: 0.6em;
+}
+.prose-fg hr {
+  border: 0;
+  border-top: 1px solid var(--color-stone);
+  margin: 2em 0;
+}

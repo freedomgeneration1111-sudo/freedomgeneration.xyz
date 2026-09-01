@@ -1,0 +1,2 @@
+# Non-locale root redirects to the default locale (memory file §36)
+/ /en/ 302
