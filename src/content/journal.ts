@@ -1,6 +1,6 @@
-// src/content/journal.ts — 3 seed entries for launch, bilingual EN/UR (per memory file §38/§40).
-// The website is the canonical archive; fbPostId/fbUrl are the seam for future
-// Facebook distribution — publish once here, distribute outward.
+// Journal migration seed and rollback fixture (not the production runtime authority).
+// Sanity is the configured production source after the Journal migration. Keep this
+// exact bilingual copy so the import is repeatable and rollback remains possible.
 
 export type JournalEntry = {
   slug: string
