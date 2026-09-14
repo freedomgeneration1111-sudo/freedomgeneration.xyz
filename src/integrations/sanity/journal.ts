@@ -1,4 +1,3 @@
-import {journal as journalSeed} from "@/content/journal";
 import {createBuildClient} from "./client";
 import {sanityBuildConfig} from "./env";
 import {adaptSanityJournalPost, adaptSeedJournalPost} from "./journal-adapter";
@@ -19,6 +18,7 @@ async function loadJournal(): Promise<JournalEntry[]> {
       console.warn(`[journal] Using the migration/rollback fixture because ${reason}.`);
       sourceNoticeShown = true;
     }
+    const {journal: journalSeed} = await import("@/content/journal");
     return journalSeed.map(adaptSeedJournalPost).sort((a, b) => b.date.localeCompare(a.date));
   }
 
