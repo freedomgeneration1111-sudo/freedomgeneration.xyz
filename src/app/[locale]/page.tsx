@@ -4,8 +4,8 @@ import { ui, type Locale } from "@/content/i18n";
 import { site } from "@/content/site";
 import { home } from "@/content/home";
 import { schoolFacts } from "@/content/schoolFacts";
-import { journal } from "@/content/journal";
 import { projects } from "@/content/projects";
+import { getJournalEntries } from "@/integrations/sanity/journal";
 import { pageMetadata } from "@/lib/meta";
 import { formatPKR } from "@/lib/format";
 import { Photo } from "@/components/Photo";
@@ -38,7 +38,7 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = (await params) as { locale: Locale };
-  const latest = [...journal].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
+  const latest = (await getJournalEntries()).slice(0, 3);
   const building = projects[0];
 
   return (

@@ -15,9 +15,36 @@ export function pageMetadata(opts: {
   title: string;
   description: string;
   ogImageId?: string;
+  article?: {
+    publishedTime: string;
+    modifiedTime?: string;
+    author: string;
+  };
 }): Metadata {
-  const { locale, path = "", title, description, ogImageId = "HERO-01" } = opts;
+  const { locale, path = "", title, description, ogImageId = "HERO-01", article } = opts;
   const og = media(ogImageId);
+  const openGraph: Metadata["openGraph"] = article
+    ? {
+        type: "article",
+        publishedTime: article.publishedTime,
+        modifiedTime: article.modifiedTime,
+        authors: [article.author],
+        title,
+        description,
+        url: urlFor(locale, path),
+        siteName: site.name[locale],
+        locale: locale === "ur" ? "ur_PK" : "en_US",
+        images: [{ url: `${site.url}${og.file}`, alt: og.alt[locale] }],
+      }
+    : {
+        type: "website",
+        title,
+        description,
+        url: urlFor(locale, path),
+        siteName: site.name[locale],
+        locale: locale === "ur" ? "ur_PK" : "en_US",
+        images: [{ url: `${site.url}${og.file}`, alt: og.alt[locale] }],
+      };
   return {
     title,
     description,
@@ -29,14 +56,6 @@ export function pageMetadata(opts: {
         "x-default": urlFor("en", path),
       },
     },
-    openGraph: {
-      title,
-      description,
-      url: urlFor(locale, path),
-      siteName: site.name[locale],
-      locale: locale === "ur" ? "ur_PK" : "en_US",
-      type: "website",
-      images: [{ url: `${site.url}${og.file}`, alt: og.alt[locale] }],
-    },
+    openGraph,
   };
 }

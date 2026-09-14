@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Locale } from "@/content/i18n";
 import { ui } from "@/content/i18n";
-import type { JournalEntry } from "@/content/journal";
+import type { JournalEntry } from "@/integrations/sanity/journal";
 import { formatDate } from "@/lib/format";
 import { Photo } from "./Photo";
 
@@ -11,7 +11,7 @@ export function JournalPreview({ entry, locale }: { entry: JournalEntry; locale:
   return (
     <article>
       <Link href={`/${locale}/journal/${entry.slug}/`} className="group block no-underline">
-        <Photo id={entry.coverId} locale={locale} showCaption={false} />
+        {entry.coverId && <Photo id={entry.coverId} locale={locale} showCaption={false} />}
         <div className="mt-3 flex items-baseline justify-between gap-4 border-t border-stone pt-2 font-sans text-sm text-ink/70">
           <span>{ui.labels.category[entry.category][locale]}</span>
           <time dateTime={entry.date}>{formatDate(entry.date, locale)}</time>

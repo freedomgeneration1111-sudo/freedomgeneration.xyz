@@ -7,7 +7,7 @@ import {
   budgetCategories,
   buildingBudgetTotals,
 } from "@/content/projects";
-import { journal } from "@/content/journal";
+import { getJournalEntries } from "@/integrations/sanity/journal";
 import { pageMetadata } from "@/lib/meta";
 import { formatPKR, formatNumber } from "@/lib/format";
 import { renderMarkdown } from "@/lib/markdown";
@@ -43,6 +43,7 @@ export default async function ProjectPage({
   const p = project(slug);
   const categories = Object.keys(budgetCategories) as (keyof typeof budgetCategories)[];
   const t = buildingBudgetTotals;
+  const journal = await getJournalEntries();
   const updates = p.updates
     .map((s) => journal.find((e) => e.slug === s))
     .filter((e) => e !== undefined);
