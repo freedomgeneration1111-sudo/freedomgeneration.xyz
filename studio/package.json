@@ -1,0 +1,31 @@
+{
+  "name": "freedom-generation-studio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "typecheck": "tsc --noEmit",
+    "schema:validate": "sanity schema validate",
+    "journal:preview": "tsx scripts/preview-journal.ts",
+    "journal:import": "sanity exec scripts/import-journal.ts --with-user-token",
+    "journal:render-smoke": "tsx --tsconfig ../tsconfig.json ../scripts/render-journal-smoke.tsx"
+  },
+  "dependencies": {
+    "marked": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sanity": "^4.17.0",
+    "styled-components": "^6.5.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
