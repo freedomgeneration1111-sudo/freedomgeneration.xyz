@@ -15,6 +15,8 @@ npm install
 npm --prefix studio install
 npm run dev            # local dev (contact API not available here — see below)
 npm run build          # static export → out/
+npm run typecheck      # root TypeScript validation
+npm run verify         # validate bilingual Journal routes and static SEO output
 npm run placeholders   # regenerate public/media placeholder JPGs from the registry
 npm run deploy         # npx wrangler pages deploy out --project-name freedom-generation
 

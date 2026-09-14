@@ -6,6 +6,7 @@ import type {JournalEntry, SanityJournalPost} from "./types";
 
 let journalPromise: Promise<JournalEntry[]> | undefined;
 let sourceNoticeShown = false;
+const buildRequestTag = `static-build-${Date.now().toString(36)}`;
 
 async function loadJournal(): Promise<JournalEntry[]> {
   const config = sanityBuildConfig();
@@ -22,11 +23,18 @@ async function loadJournal(): Promise<JournalEntry[]> {
     return journalSeed.map(adaptSeedJournalPost).sort((a, b) => b.date.localeCompare(a.date));
   }
 
+  if (!sourceNoticeShown) {
+    console.info(
+      `[journal] Using Sanity project ${config.projectId}, dataset ${config.dataset}, published perspective (${config.token ? "authenticated" : "tokenless"}).`,
+    );
+    sourceNoticeShown = true;
+  }
+
   const client = createBuildClient(config);
   const documents = await client.fetch<SanityJournalPost[]>(
     publishedJournalPostsQuery,
     {},
-    {cache: "no-store", perspective: "published"},
+    {cache: "force-cache", perspective: "published", tag: buildRequestTag},
   );
   return documents.map(adaptSanityJournalPost);
 }

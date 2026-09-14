@@ -70,7 +70,7 @@ SANITY_STUDIO_DATASET
 
 `SANITY_API_READ_TOKEN` must be a least-privilege read-only token. It is consumed only by the build process and must never use a `NEXT_PUBLIC_*` name. Public datasets need no token for published content.
 
-The client uses fixed API version `2026-09-01`, `perspective: "published"`, `useCdn: false`, and a `no-store` request. The GROQ query also excludes IDs under `drafts.**`. Drafts therefore produce neither `generateStaticParams()` values nor public HTML.
+The client uses fixed API version `2026-09-01`, `perspective: "published"`, `useCdn: false`, and a build-scoped statically cached request whose unique tag prevents reuse across separate builds. The GROQ query also excludes IDs under `drafts.**`. Drafts therefore produce neither `generateStaticParams()` values nor public HTML.
 
 ## Initial setup and seed import
 
@@ -95,7 +95,7 @@ No Sanity project ID or dataset was available during implementation. Once an adm
 
 5. Open Studio and inspect all English/Urdu fields, media IDs, dates, categories, bylines, and slugs before the first production build.
 
-The importer reads `src/content/journal.ts`, converts its Markdown deterministically, verifies the visible text has not changed, and uses stable IDs of the form `journalPost.<slug>`. It runs as one `createOrReplace` transaction, so it is repeatable and intentionally overwrites those three stable seed IDs. Run the preview first. The import creates published documents; it does not create drafts.
+The importer reads `src/content/journal.ts`, converts its Markdown deterministically, verifies the visible text has not changed, and uses stable IDs of the form `journalPost-<slug>`. Published IDs intentionally contain no dots because unauthenticated reads from a public Sanity dataset exclude dotted IDs. The transaction also removes the three legacy `journalPost.<slug>` IDs created by the pre-commissioning importer. It runs as one `createOrReplace` transaction, so it is repeatable and intentionally overwrites those three stable seed IDs. Run the preview first. The import creates published documents; it does not create drafts.
 
 The three preserved slugs are:
 

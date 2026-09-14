@@ -22,7 +22,7 @@ export function buildJournalDocuments() {
     }
 
     return {
-      _id: `journalPost.${entry.slug}`,
+      _id: `journalPost-${entry.slug}`,
       _type: "journalPost" as const,
       title: {_type: "localizedString", ...entry.title},
       slug: {_type: "slug", current: entry.slug},

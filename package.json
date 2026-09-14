@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "placeholders": "node scripts/generate-placeholders.mjs",
-    "deploy": "wrangler pages deploy out --project-name freedom-generation"
+    "deploy": "wrangler pages deploy out --project-name freedom-generation",
+    "typecheck": "tsc --noEmit",
+    "verify": "node scripts/verify-static-output.mjs"
   },
   "dependencies": {
     "@portabletext/react": "^8.0.1",

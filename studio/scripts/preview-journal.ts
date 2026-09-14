@@ -3,6 +3,7 @@ import {buildJournalDocuments} from "./journalDocuments";
 const documents = buildJournalDocuments();
 
 for (const document of documents) {
+  console.log(document._id);
   console.log(`${document.slug.current}`);
   console.log(`  date/category: ${document.date} / ${document.category}`);
   console.log(`  author: ${document.author}`);
