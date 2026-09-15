@@ -50,15 +50,23 @@ Slugs are required and use Sanity's document-aware uniqueness check. The editor 
 
 ## Environment variables
 
-Use `.env.example` as the name-only template.
+Use `.env.example` as the configuration template.
 
-Public Next.js build (`.env.local`, Cloudflare Pages build variables, or CI secrets):
+The public Next.js build has these built-in defaults:
 
 ```text
-SANITY_PROJECT_ID
-SANITY_DATASET
-SANITY_API_READ_TOKEN       # private datasets only; build secret
-SANITY_JOURNAL_SOURCE       # omit normally; set fixture only for rollback
+SANITY_PROJECT_ID=ypv2g0fi
+SANITY_DATASET=production
+SANITY_JOURNAL_SOURCE=sanity
+```
+
+The application uses those values when variables are absent. `.env.local`, Cloudflare Pages build variables, or CI may override them deliberately:
+
+```text
+SANITY_PROJECT_ID            # optional override
+SANITY_DATASET               # optional override
+SANITY_API_READ_TOKEN        # private datasets only; build secret
+SANITY_JOURNAL_SOURCE        # optional; sanity or explicit fixture override
 ```
 
 Studio (`studio/.env` or Sanity-hosted Studio environment):
@@ -68,15 +76,15 @@ SANITY_STUDIO_PROJECT_ID
 SANITY_STUDIO_DATASET
 ```
 
-`SANITY_API_READ_TOKEN` must be a least-privilege read-only token. It is consumed only by the build process and must never use a `NEXT_PUBLIC_*` name. Public datasets need no token for published content.
+Project `ypv2g0fi` dataset `production` is public, so its published content requires no read token. If a private replacement dataset is configured, `SANITY_API_READ_TOKEN` must be a least-privilege read-only token. It is consumed only by the build process and must never use a `NEXT_PUBLIC_*` name.
 
 The client uses fixed API version `2026-09-01`, `perspective: "published"`, `useCdn: false`, and a build-scoped statically cached request whose unique tag prevents reuse across separate builds. The GROQ query also excludes IDs under `drafts.**`. Drafts therefore produce neither `generateStaticParams()` values nor public HTML.
 
-## Initial setup and seed import
+## Project setup and seed import
 
-No Sanity project ID or dataset was available during implementation. Once an administrator creates or identifies the intended project and dataset:
+The commissioned Sanity project is `ypv2g0fi` and the dataset is `production`. To work with the Studio or repeat the seed import:
 
-1. Copy `.env.example` to `.env.local` and `studio/.env`, filling the applicable names.
+1. Copy `.env.example` to `studio/.env`. A public-site `.env.local` is optional and only needed to override the built-in defaults.
 2. Install both packages with `npm install` and `npm --prefix studio install`.
 3. Inspect the deterministic conversion:
 
@@ -107,7 +115,7 @@ The project record remains local TypeScript and still links its update by the th
 
 ## Build behavior and rollback
 
-When `SANITY_PROJECT_ID` is present, Sanity is the only Journal provider used by the public build. Published records drive:
+Sanity is the normal and default Journal provider used by the public build, including when all `SANITY_*` variables are absent. The built-in authority is project `ypv2g0fi`, dataset `production`, using the published perspective without a token. Published records drive:
 
 - both English and Urdu detail routes from `generateStaticParams()`
 - Journal index ordering
@@ -117,7 +125,6 @@ When `SANITY_PROJECT_ID` is present, Sanity is the only Journal provider used by
 - `BlogPosting` JSON-LD
 - sitemap paths and dates
 
-When no project ID is configured, the build prints an explicit warning and uses `src/content/journal.ts` so this repository remains buildable before external setup. This is a migration/bootstrap condition, not the intended production configuration.
 
 For an intentional rollback, set this build variable and redeploy:
 
@@ -125,9 +132,9 @@ For an intentional rollback, set this build variable and redeploy:
 SANITY_JOURNAL_SOURCE=fixture
 ```
 
-That forces the preserved seed even when Sanity identifiers exist. Remove the override to return to Sanity. Do not edit both sources in parallel: after initial import, routine editorial changes belong in Sanity; the local file is a migration/rollback snapshot only.
+That forces the preserved seed. Remove the override to return to Sanity. Missing project, dataset, source, or token variables never trigger fixture mode. Do not edit both sources in parallel: after initial import, routine editorial changes belong in Sanity; the local file is a migration/rollback snapshot only.
 
-If a Sanity build fails, Cloudflare Pages should keep serving the previous successful static deployment. Do not silently fall back from an attempted Sanity query to local data—the provider only uses the fixture when configuration is absent or the rollback override is explicit.
+If a Sanity build fails, Cloudflare Pages should keep serving the previous successful static deployment. Do not silently fall back from an attempted Sanity query to local data—the provider uses the fixture only when `SANITY_JOURNAL_SOURCE=fixture` is explicitly set.
 
 ## Intended production deployment
 
@@ -147,9 +154,11 @@ Configure Cloudflare Pages with:
 - build command: `npm run build`
 - output directory: `out`
 - Node.js 22.12 or newer
-- `SANITY_PROJECT_ID` and `SANITY_DATASET`
+- optional `SANITY_PROJECT_ID`, `SANITY_DATASET`, and `SANITY_JOURNAL_SOURCE` overrides; the repository defaults are `ypv2g0fi`, `production`, and `sanity`
 - build-only `SANITY_API_READ_TOKEN` only if the dataset is private
 - existing `RESEND_API_KEY` for the separate contact Pages Function
+
+`wrangler.toml` repeats the three public Sanity values for Pages/Function configuration consistency. The static Next.js build is still self-contained: production must never silently use the fixture merely because Cloudflare did not inject those variables.
 
 The intended editorial publishing path is:
 
@@ -179,18 +188,8 @@ npm --prefix studio run build
 
 `schema:validate`, real Studio deployment, and real import require a valid Sanity project configuration and authenticated access. A Studio bundle can still be compiled with a syntactically valid placeholder ID to verify local bundling, but that does not validate remote project access.
 
-After the public build, verify `out/` contains all six localized detail pages, localized canonical/alternate metadata, `BlogPosting` JSON-LD, and sitemap entries. Confirm there are no `drafts.*` paths.
+After the public build, verify `out/` contains localized detail pages for every published slug (including the six seed routes), localized canonical/alternate metadata, `BlogPosting` JSON-LD, and sitemap entries. Confirm there are no `drafts.*` paths.
 
-## External setup still unresolved
+## External deployment scope
 
-The 2026-09-14 inspection found all of the following unresolved:
-
-- no Sanity project/dataset identifiers in the repository or environment
-- no Studio deployment
-- no Git remote
-- no `freedom-generation` Pages project in the authenticated Cloudflare account
-- no Cloudflare Pages Git integration or Deploy Hook
-- no Sanity webhook
-- `freedomgeneration.xyz` apparently in a Namecheap contact-verification/holding state
-
-These external issues must be repaired by the relevant account owners. This repository change does not create, modify, or claim completion of any external Sanity, GitHub, Cloudflare, DNS, or Namecheap resource.
+This repository records the commissioned public Sanity project/dataset and the static build behavior. It does not create, modify, or claim completion of any external Studio deployment, Cloudflare Pages project, Git integration, Deploy Hook, Sanity webhook, DNS, or Namecheap resource.

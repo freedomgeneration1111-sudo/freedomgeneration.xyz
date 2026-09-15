@@ -13,10 +13,9 @@ async function loadJournal(): Promise<JournalEntry[]> {
 
   if (config.source === "fixture") {
     if (!sourceNoticeShown) {
-      const reason = process.env.SANITY_JOURNAL_SOURCE === "fixture"
-        ? "SANITY_JOURNAL_SOURCE=fixture"
-        : "SANITY_PROJECT_ID is not configured";
-      console.warn(`[journal] Using the migration/rollback fixture because ${reason}.`);
+      console.warn(
+        "[journal] Using the migration/rollback fixture because SANITY_JOURNAL_SOURCE=fixture.",
+      );
       sourceNoticeShown = true;
     }
     const {journal: journalSeed} = await import("@/content/journal");

@@ -2,3 +2,8 @@
 name = "freedom-generation"
 compatibility_date = "2026-09-01"
 pages_build_output_dir = "out"
+
+[vars]
+SANITY_PROJECT_ID = "ypv2g0fi"
+SANITY_DATASET = "production"
+SANITY_JOURNAL_SOURCE = "sanity"

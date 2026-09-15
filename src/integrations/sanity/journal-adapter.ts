@@ -8,6 +8,10 @@ import {
   type SanityJournalPost,
 } from "./types";
 
+const sanityMediaIdAliases: Record<string, string> = {
+  "cover-01": "JOURNAL-COVER-01",
+};
+
 function requiredString(value: unknown, field: string): string {
   if (typeof value !== "string" || value.trim().length === 0) {
     throw new Error(`Published Journal post has an empty or invalid ${field}.`);
@@ -18,6 +22,11 @@ function requiredString(value: unknown, field: string): string {
 function optionalString(value: unknown, field: string): string | undefined {
   if (value === undefined || value === null) return undefined;
   return requiredString(value, field);
+}
+
+function optionalSanityMediaId(value: unknown, field: string): string | undefined {
+  const id = optionalString(value, field);
+  return id ? (sanityMediaIdAliases[id] ?? id) : undefined;
 }
 
 function requiredLocalizedStrings(value: unknown, field: string): Localized<string> {
@@ -105,7 +114,7 @@ export function adaptSanityJournalPost(document: SanityJournalPost): JournalEntr
     author: requiredString(document.author, "author"),
     title: requiredLocalizedStrings(document.title, "title"),
     excerpt: requiredLocalizedStrings(document.excerpt, "excerpt"),
-    coverId: optionalString(document.coverMediaId, "coverMediaId"),
+    coverId: optionalSanityMediaId(document.coverMediaId, "coverMediaId"),
     galleryIds: mediaIds(document.galleryMediaIds),
     body: {
       en: {format: "portableText", value: body.en},

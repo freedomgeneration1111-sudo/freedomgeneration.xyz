@@ -4,7 +4,7 @@ Bilingual (English/Urdu) documentary school website for Freedom Generation Schoo
 
 Strategic source of truth: `FREEDOM-GENERATION-SCHOOL-PROJECT-MEMORY.md` (repo root). Standing build rules: `CLAUDE.md`.
 
-The School Journal is managed in Sanity and fetched only during `next build`. All other content areas remain in `src/content/`. See [`docs/sanity-journal.md`](docs/sanity-journal.md) for architecture, setup, import, deployment automation, and rollback.
+The School Journal is managed in the public Sanity project `ypv2g0fi`, dataset `production`, and fetched only during `next build`. Those identifiers and Sanity authority are built-in defaults, so a production build does not depend on environment-variable injection. All other content areas remain in `src/content/`. See [`docs/sanity-journal.md`](docs/sanity-journal.md) for architecture, setup, import, deployment automation, and rollback.
 
 ## Commands
 
@@ -25,7 +25,9 @@ npm --prefix studio run journal:preview
 npm --prefix studio run journal:import
 ```
 
-Copy `.env.example` to `.env.local` for the public build and to `studio/.env` for Studio, then add the same Sanity project ID and dataset. A private dataset additionally requires a build-only `SANITY_API_READ_TOKEN`; never expose it through a `NEXT_PUBLIC_*` variable.
+No Sanity environment variables are required for the normal public-site build: it defaults to project `ypv2g0fi`, dataset `production`, source `sanity`, and tokenless published reads. Values in `.env.local`, CI, or Cloudflare may deliberately override those defaults. The public production dataset does not require `SANITY_API_READ_TOKEN`; a private replacement dataset would require a build-only read token, which must never use a `NEXT_PUBLIC_*` name. Set `SANITY_JOURNAL_SOURCE=fixture` only for an explicit rollback or development build—missing variables never select the fixture.
+
+Copy `.env.example` to `studio/.env` when configuring the separate Studio package.
 
 To test the contact form locally, build first, then run the static site together with the Pages Function:
 
@@ -48,5 +50,6 @@ npx wrangler pages dev out
 - Cloudflare Pages project name: `freedom-generation`; custom domain `freedomgeneration.xyz`.
 - `public/_redirects` sends `/` → `/en/`.
 - Intended production build command: `npm run build`; output directory: `out/`.
+- Sanity defaults are project `ypv2g0fi`, dataset `production`, source `sanity`; `wrangler.toml` repeats these public values for Pages/Function consistency, but the Next.js build does not depend on their injection.
+- `SANITY_JOURNAL_SOURCE=fixture` is the explicit Journal rollback/development switch. Production never silently falls back to the fixture because Sanity variables are missing.
 - Set `RESEND_API_KEY` in the Pages project settings to activate contact-form email delivery.
-- The current repository inspection found no Git remote or authenticated `freedom-generation` Pages project, and the domain appears to be in a Namecheap verification/holding state. These are unresolved external prerequisites, not completed setup.
