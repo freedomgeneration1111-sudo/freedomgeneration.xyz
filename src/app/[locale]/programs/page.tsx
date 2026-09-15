@@ -94,7 +94,7 @@ export default async function ProgramsPage({
         <div className="mt-5 overflow-x-auto">
           <table className="w-full min-w-[36rem] border-collapse font-sans text-[0.92rem]">
             <thead>
-              <tr className="border-b-2 border-green text-start">
+              <tr className="border-b-2 border-ochre text-start">
                 <th className="py-2 pe-4 text-start font-medium">
                   {locale === "ur" ? "تاریخ" : "Date"}
                 </th>

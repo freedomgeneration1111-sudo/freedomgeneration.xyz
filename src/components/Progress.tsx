@@ -13,7 +13,7 @@ export function Progress({ percent, locale }: { percent: number; locale: Locale 
         aria-label={`${percent}% ${ui.labels.complete[locale]}, ${remaining}% ${ui.labels.remains[locale]}`}
         className="flex h-5 w-full border border-stone"
       >
-        <div className="h-full bg-green" style={{ width: `${percent}%` }} />
+        <div className="h-full bg-sage" style={{ width: `${percent}%` }} />
         <div className="remains-hatch h-full flex-1" />
       </div>
       <div className="mt-2 flex items-baseline justify-between font-sans text-sm">

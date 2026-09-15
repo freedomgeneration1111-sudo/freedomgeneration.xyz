@@ -47,7 +47,7 @@ export default async function TransparencyPage({
       <p className="mt-4 leading-relaxed">{transparencyCopy.designatedFunds[locale]}</p>
 
       {/* Legal + governance */}
-      <section className="mt-10 border-t border-stone pt-6 font-sans text-[0.95rem]">
+      <section className="mt-10 border-t border-plum pt-6 font-sans text-[0.95rem]">
         <dl className="grid gap-x-10 gap-y-4 sm:grid-cols-2">
           <div>
             <dt className="text-ink/60">{locale === "ur" ? "قانونی نام" : "Legal name"}</dt>
@@ -73,7 +73,7 @@ export default async function TransparencyPage({
         <div className="mt-5 overflow-x-auto">
           <table className="w-full min-w-[30rem] border-collapse font-sans text-[0.92rem]">
             <thead>
-              <tr className="border-b-2 border-green">
+              <tr className="border-b-2 border-plum">
                 <th className="py-2 pe-4 text-start font-medium">
                   {locale === "ur" ? "زمرہ" : "Category"}
                 </th>

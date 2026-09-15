@@ -39,7 +39,7 @@ export default async function JournalIndexPage({
           ? "یہ جریدہ ہمارا مستند ریکارڈ ہے — جو کچھ سکول میں ہوتا ہے وہ پہلے یہاں شائع ہوتا ہے، پھر آگے بڑھایا جاتا ہے۔"
           : "This journal is our canonical record — what happens at the school is published here first, then shared outward."}
       </p>
-      <div className="mt-10 grid gap-12 border-t border-stone pt-10 md:grid-cols-3 md:gap-8">
+      <div className="mt-10 grid gap-12 border-t border-terracotta pt-10 md:grid-cols-3 md:gap-8">
         {entries.map((entry) => (
           <JournalPreview key={entry.slug} entry={entry} locale={locale} />
         ))}

@@ -50,9 +50,15 @@ export default async function ProjectPage({
 
   return (
     <article>
-      <Photo id={p.coverId} locale={locale} priority showCaption={false} />
+      <Photo
+        id={p.coverId}
+        locale={locale}
+        priority
+        showCaption={false}
+        className="hero-frame"
+      />
       <div className="mx-auto max-w-3xl px-5 md:px-8">
-        <p className="mt-10 font-sans text-sm text-ink/70">
+        <p className="mt-10 font-sans text-sm text-sage">
           {ui.labels.status[p.status][locale]}
         </p>
         <h1 className="mt-2 font-serif text-3xl font-semibold leading-tight md:text-4xl">

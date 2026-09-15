@@ -28,9 +28,9 @@ export async function generateMetadata({
   });
 }
 
-// Container helpers: photos run edge-to-edge on mobile, text keeps an editorial measure.
+// Container helpers: text keeps an editorial measure; nested media retains a small mobile inset.
 const wide = "mx-auto max-w-5xl px-5 md:px-8";
-const bleed = "-mx-5 md:mx-0";
+const bleed = "-mx-1 sm:mx-0";
 
 export default async function HomePage({
   params,
@@ -43,8 +43,8 @@ export default async function HomePage({
 
   return (
     <div className="pb-4">
-      {/* 2 — Hero, full-bleed, kicker only */}
-      <section className="relative">
+      {/* 2 — Hero, framed, kicker only */}
+      <section className="hero-frame relative">
         <Photo
           id="HERO-01"
           locale={locale}
@@ -98,7 +98,12 @@ export default async function HomePage({
 
       {/* 7 — Challenge, candid, no pity marketing */}
       <section className="mt-20 md:mt-28">
-        <Photo id="CHALLENGE-01" locale={locale} showCaption={false} />
+        <Photo
+          id="CHALLENGE-01"
+          locale={locale}
+          showCaption={false}
+          className="media-frame"
+        />
         <div className={`${wide} mt-8`}>
           <h2 className="font-serif text-2xl font-semibold">{home.challenge.heading[locale]}</h2>
           <p className="mt-4 max-w-2xl leading-relaxed">{home.challenge.body[locale]}</p>

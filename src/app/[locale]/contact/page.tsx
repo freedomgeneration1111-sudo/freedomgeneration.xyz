@@ -32,7 +32,13 @@ export default async function ContactPage({
   const { locale } = (await params) as { locale: Locale };
   return (
     <div>
-      <Photo id="CONTACT-01" locale={locale} priority showCaption={false} />
+      <Photo
+        id="CONTACT-01"
+        locale={locale}
+        priority
+        showCaption={false}
+        className="hero-frame"
+      />
       <div className="mx-auto max-w-3xl px-5 md:px-8">
         <h1 className="mt-12 font-serif text-3xl font-semibold md:text-4xl">
           {contactPage.title[locale]}

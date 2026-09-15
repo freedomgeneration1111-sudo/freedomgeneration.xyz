@@ -12,8 +12,14 @@ export function Footer({ locale }: { locale: Locale }) {
   const l = (slug: string) => `/${locale}/${slug}/`;
   return (
     <footer className="mt-20">
-      <Photo id="FOOTER-TRUST" locale={locale} priority={false} showCaption={false} />
-      <div className="bg-green text-paper">
+      <Photo
+        id="FOOTER-TRUST"
+        locale={locale}
+        priority={false}
+        showCaption={false}
+        className="media-frame mb-6 md:mb-10"
+      />
+      <div className="footer-links bg-green-light text-paper">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 md:grid-cols-3 md:px-8">
           <div>
             <Logo locale={locale} tone="paper" linked={false} />
@@ -23,24 +29,29 @@ export function Footer({ locale }: { locale: Locale }) {
             <p className="mt-2 font-sans text-sm leading-relaxed opacity-90">
               {ui.footer.staffNote[locale]}
             </p>
+            <img
+              src="/brand/fg-badge.svg"
+              alt="Freedom Generation School System badge"
+              className="mt-6 size-24 rounded-full bg-paper md:size-28"
+            />
           </div>
           <address className="not-italic font-sans text-sm leading-relaxed">
             <p>{site.address}</p>
             <p className="mt-3">
-              <a href={`tel:${site.phone.replace(/[\s-]/g, "")}`} className="no-underline hover:underline">
+              <a href={`tel:${site.phone.replace(/[\s-]/g, "")}`} className="no-underline hover:text-ochre hover:underline">
                 {site.phone}
               </a>
               {" · "}
               <a
                 href={`https://wa.me/${site.whatsapp}`}
-                className="underline hover:opacity-80"
+                className="underline hover:text-ochre"
                 rel="noopener"
               >
                 {ui.footer.whatsapp[locale]}
               </a>
             </p>
             <p className="mt-1">
-              <a href={`mailto:${site.email}`} className="underline hover:opacity-80">
+              <a href={`mailto:${site.email}`} className="underline hover:text-ochre">
                 {site.email}
               </a>
             </p>
@@ -48,22 +59,22 @@ export function Footer({ locale }: { locale: Locale }) {
           <div className="font-sans text-sm">
             <ul className="space-y-1.5">
               <li>
-                <Link href={l("transparency")} className="underline hover:opacity-80">
+                <Link href={l("transparency")} className="underline hover:text-ochre">
                   {ui.nav.transparency[locale]}
                 </Link>
               </li>
               <li>
-                <Link href={l("journal")} className="underline hover:opacity-80">
+                <Link href={l("journal")} className="underline hover:text-ochre">
                   {ui.nav.journal[locale]}
                 </Link>
               </li>
               <li>
-                <Link href={l("support")} className="underline hover:opacity-80">
+                <Link href={l("support")} className="underline hover:text-ochre">
                   {ui.nav.support[locale]}
                 </Link>
               </li>
               <li>
-                <Link href={`${l("support")}#financial`} className="underline hover:opacity-80">
+                <Link href={`${l("support")}#financial`} className="underline hover:text-ochre">
                   {ui.footer.donate[locale]}
                 </Link>
               </li>

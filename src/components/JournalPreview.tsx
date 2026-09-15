@@ -13,7 +13,7 @@ export function JournalPreview({ entry, locale }: { entry: JournalEntry; locale:
       <Link href={`/${locale}/journal/${entry.slug}/`} className="group block no-underline">
         {entry.coverId && <Photo id={entry.coverId} locale={locale} showCaption={false} />}
         <div className="mt-3 flex items-baseline justify-between gap-4 border-t border-stone pt-2 font-sans text-sm text-ink/70">
-          <span>{ui.labels.category[entry.category][locale]}</span>
+          <span className="text-terracotta">{ui.labels.category[entry.category][locale]}</span>
           <time dateTime={entry.date}>{formatDate(entry.date, locale)}</time>
         </div>
         <h3 className="mt-2 font-serif text-xl font-semibold leading-snug text-ink group-hover:text-green">

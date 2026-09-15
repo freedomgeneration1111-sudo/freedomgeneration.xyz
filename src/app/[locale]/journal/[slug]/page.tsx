@@ -56,14 +56,20 @@ export default async function JournalEntryPage({
         dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd).replace(/</g, "\\u003c")}}
       />
       {entry.coverId && (
-        <Photo id={entry.coverId} locale={locale} priority showCaption={false} />
+        <Photo
+          id={entry.coverId}
+          locale={locale}
+          priority
+          showCaption={false}
+          className="hero-frame"
+        />
       )}
       <div className="mx-auto max-w-2xl px-5 md:px-0">
         <div className="mt-10 flex flex-wrap items-baseline justify-between gap-3 font-sans text-sm text-ink/70">
-          <span>{ui.labels.category[entry.category][locale]}</span>
+          <span className="text-terracotta">{ui.labels.category[entry.category][locale]}</span>
           <time dateTime={entry.date}>{formatDate(entry.date, locale)}</time>
         </div>
-        <h1 className="mt-3 font-serif text-3xl font-semibold leading-tight md:text-4xl">
+        <h1 className="mt-3 font-serif text-3xl font-semibold leading-tight text-ink md:text-4xl">
           {entry.title[locale]}
         </h1>
         <p className="mt-3 font-sans text-sm text-ink/70">

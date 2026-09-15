@@ -1024,23 +1024,30 @@ If a future request conflicts with a decision recorded here, surface the conflic
 - **Consent:** Implicit cultural consent exists, explicit consent to be formalized at next parents meeting. For V1 assume consent for group/classroom imagery; avoid spotlighting individual girls who are camera-shy. Teachers are mostly young Muslim women who prefer low publicity — do not publish individual teacher profile photos without permission.
 
 ## 35. Brand & Design System for One-Shot Build
-### Logo direction
-- **Type:** Word logo, not emblem.
-- **Lockup:** 
-  - Line 1: FREEDOM GENERATION (serif, bold, tracked slightly tight)
-  - Line 2: SCHOOL (sans, small caps or light weight)
-  - Line 3: "teach your children well" (serif italic, sentence case, smaller, warm)
-- Avoid generic graduation cap / child silhouette icons. Must work in single color Pakistan Green on light, and off-white on green.
+### Logo system
+- **Approved symbol:** Multicolored fruit tree with a dark green trunk, restrained multicolored leaves, exactly five red fruits, and no cross.
+- **Formal identity:** FREEDOM GENERATION / SCHOOL SYSTEM.
+- **Official motto:** "teach your children well" — preserve the lowercase wording exactly.
+- **Website lockup:** Horizontal compact header lockup.
+- **Institutional mark:** Circular badge/seal.
+- **Icon mark:** Tree mark, with the favicon derived from it.
+- Keep the identity editorial and dignified rather than using children's-rainbow styling.
 
-### Color (Pakistan Green system)
-- **Pakistan Green (primary):** #01411C
-- **Pakistan Green Light (hover / tint):** #0A5C2E
+### Color (approved identity)
+- **Forest (primary):** #124F38
+- **Deep Forest (hover / darker state):** #0E412F
+- **Sage:** #71866A
+- **Ochre (primary accent):** #C49A55
+- **Terracotta:** #B86F56
+- **Dusty Blue:** #63869A
+- **Plum:** #865C67
+- **Fruit Red:** #B71C1C — belongs primarily to the five logo fruits, not routine UI decoration.
 - **Ink (text):** #121212
-- **Off-White (paper):** #FFFEFA
-- **Warm Clay (accent / quote bg):** #E8DDD0
+- **Paper (main page background):** #FFFEFA
+- **Warm Clay:** #E8DDD0
 - **Stone / Border:** #D8D0C5
-- **Error / Alert (minimal use):** #8B1E1E
-- Do not drench site in green. Use green as ink for header/footer, buttons, links, and small accents. Main background is off-white paper with generous whitespace.
+- **Error / Alert (minimal use):** #8B1E1E, kept separate from Fruit Red.
+- Keep the interface approximately 80% neutral/paper, 15% green family, and 5% accent colors. The site remains predominantly paper/cream and forest green; Ochre is the main site-wide accent, while other leaf colors are sparse contextual accents.
 
 ### Typography (documentary editorial)
 - **Serif (story / headings):** Fraunces or Newsreader or IBM Plex Serif — for longform narrative
@@ -1323,7 +1330,7 @@ Example CLAUDE.md to put in repo root (tells Claude to obey your architecture):
 - Content: separate from UI in src/content/*.ts (site, journal, projects, media registry, transparency) — do NOT bury copy in components
 - Media: use registry pattern, real photos only, no stock, no AI images
 - Bilingual: [locale] segment en|ur, dictionaries in content, RTL for ur, Noto Nastaliq Urdu
-- Design: magazine, large documentary photos, generous whitespace, Pakistan Green #01411C as primary accent, off-white paper #FFFEFA, no donate popup, no stat dashboards, footer donate only
+- Design: magazine, large documentary photos, generous whitespace, Forest #124F38 as primary brand green, Ochre #C49A55 as the restrained primary accent, paper #FFFEFA, no donate popup, no stat dashboards, footer donate only
 - Routes: /[locale], /[locale]/our-story, /[locale]/teaching, /[locale]/programs, /[locale]/journal, /[locale]/journal/[slug], /[locale]/projects, /[locale]/projects/[slug], /[locale]/transparency, /[locale]/contact, /[locale]/support
 - SEO: real HTML, semantic headings, OG images from media registry, JSON-LD for school, sitemap, alt text bilingual
 - Contact form: /api/contact -> freedomgenerationschool@gmail.com, preserve seam for Resend
@@ -1351,7 +1358,7 @@ Wireframe homepage per Section 37 — magazine, no CTA, journal preview + projec
 
 Seed 3 journal entries, 1 project (80% building), transparency simplified budget table placeholder.
 
-Design tokens: Pakistan Green #01411C, off-white #FFFEFA, ink #121212, clay #E8DDD0.
+Design tokens: Forest #124F38, Deep Forest #0E412F, Sage #71866A, Ochre #C49A55, Terracotta #B86F56, Dusty Blue #63869A, Plum #865C67, Fruit Red #B71C1C, paper #FFFEFA, ink #121212, Warm Clay #E8DDD0, Stone #D8D0C5.
 
 Deploy ready: npm run build -> out folder, wrangler config.
 ```

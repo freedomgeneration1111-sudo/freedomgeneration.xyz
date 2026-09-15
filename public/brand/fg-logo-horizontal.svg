@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="340" viewBox="0 0 1440 340">
   <defs></defs>
-  <g transform="translate(46 34) scale(1.0)">
+  
+<g transform="translate(38 12) scale(0.72)">
       <g fill="none" stroke="#0E412F" stroke-linecap="round" stroke-linejoin="round">
         <path d="M 205 358 C 202 317, 202 277, 205 235 C 207 184, 207 137, 205 96" stroke-width="18"/>
         <path d="M 202 300 C 168 272, 143 239, 126 201" stroke-width="11"/>
@@ -106,4 +107,11 @@
             <circle cx="258.5" cy="247.2" r="3.1" fill="#FFFFFF" opacity="0.42"/>
             <path d="M 263,238.0 C 262,231.0 265,229.0 267,226.0" fill="none" stroke="#0E412F" stroke-width="2.7" stroke-linecap="round"/>
         </g></g>
+<g fill="#0E412F">
+  <text x="380" y="128" font-family="Georgia, 'Times New Roman', serif" font-size="69" font-weight="700" letter-spacing="0.5">FREEDOM GENERATION</text>
+  <text x="388" y="204" font-family="Arial, Helvetica, sans-serif" font-size="35" font-weight="700" letter-spacing="12">SCHOOL SYSTEM</text>
+</g>
+<path d="M 388 232 H 1345" stroke="#C49A55" stroke-width="4"/>
+<text x="388" y="294" fill="#0E412F" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="700" font-style="italic">teach your children well</text>
+
 </svg>

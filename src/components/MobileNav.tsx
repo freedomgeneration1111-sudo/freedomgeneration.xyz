@@ -8,7 +8,7 @@ export function MobileNav({
   openLabel,
   closeLabel,
 }: {
-  items: { href: string; label: string }[];
+  items: { href: string; label: string; active?: boolean }[];
   openLabel: string;
   closeLabel: string;
 }) {
@@ -50,7 +50,10 @@ export function MobileNav({
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block py-3 font-sans text-[0.95rem] text-green no-underline hover:text-green-light"
+                  aria-current={item.active ? "page" : undefined}
+                  className={`block py-3 font-sans text-[0.95rem] text-green decoration-ochre decoration-2 underline-offset-4 hover:underline focus-visible:underline active:underline ${
+                    item.active ? "underline" : "no-underline"
+                  }`}
                 >
                   {item.label}
                 </Link>

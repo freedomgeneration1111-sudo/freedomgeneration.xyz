@@ -1,5 +1,5 @@
-# CLAUDE.md — Project Rules for Freedom Generation School website
-# Place in repo root. Read automatically by Claude Code every session — keep this to durable rules, not one-time build instructions.
+# AGENTS.md — Project Rules for Freedom Generation School website
+# Place in repo root. Read automatically by Codex every session — keep this to durable rules, not one-time build instructions.
 
 ## Source of truth
 - `FREEDOM-GENERATION-SCHOOL-PROJECT-MEMORY.md` (repo root) is the strategic source of truth — 17 parts, exact numbers, bilingual copy, content-model TypeScript. If any instruction here conflicts with it, the memory file wins; flag the conflict, don't silently pick one.

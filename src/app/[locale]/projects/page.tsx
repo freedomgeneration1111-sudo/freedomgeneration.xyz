@@ -41,12 +41,12 @@ export default async function ProjectsIndexPage({
           ? "ہم عمومی عطیات کی بجائے مخصوص ضروریات کو ترجیح دیتے ہیں۔ ہر منصوبے کا ہدف، بجٹ اور پیش رفت عوامی ہے۔"
           : "We prefer specific needs over generic giving. Every project's goal, budget, and progress are public."}
       </p>
-      <div className="mt-10 space-y-12 border-t border-stone pt-10">
+      <div className="mt-10 space-y-12 border-t border-sage pt-10">
         {projects.map((project) => (
           <article key={project.slug} className="grid gap-8 md:grid-cols-2 md:items-center md:gap-12">
             <Photo id={project.coverId} locale={locale} showCaption={false} />
             <div>
-              <p className="font-sans text-sm text-ink/70">
+              <p className="font-sans text-sm text-sage">
                 {ui.labels.status[project.status][locale]}
               </p>
               <h2 className="mt-1 font-serif text-2xl font-semibold leading-snug">

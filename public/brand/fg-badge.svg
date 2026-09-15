@@ -1,6 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <defs></defs>
-  <g transform="translate(46 34) scale(1.0)">
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+<path id="topArc" d="M 170,512 A 342,342 0 0,1 854,512"/>
+<path id="bottomArc" d="M 854,512 A 342,342 0 0,1 170,512"/>
+</defs>
+  
+<circle cx="512" cy="512" r="472" fill="none" stroke="#0E412F" stroke-width="18"/>
+<circle cx="512" cy="512" r="396" fill="none" stroke="#C49A55" stroke-width="7"/>
+<circle cx="512" cy="512" r="355" fill="#F5EEE7" fill-opacity="0.45"/>
+<g transform="translate(92 145) scale(2.0)">
       <g fill="none" stroke="#0E412F" stroke-linecap="round" stroke-linejoin="round">
         <path d="M 205 358 C 202 317, 202 277, 205 235 C 207 184, 207 137, 205 96" stroke-width="18"/>
         <path d="M 202 300 C 168 272, 143 239, 126 201" stroke-width="11"/>
@@ -106,4 +113,13 @@
             <circle cx="258.5" cy="247.2" r="3.1" fill="#FFFFFF" opacity="0.42"/>
             <path d="M 263,238.0 C 262,231.0 265,229.0 267,226.0" fill="none" stroke="#0E412F" stroke-width="2.7" stroke-linecap="round"/>
         </g></g>
+<text fill="#0E412F" font-family="Georgia, 'Times New Roman', serif" font-size="67" font-weight="700" letter-spacing="5">
+  <textPath href="#topArc" startOffset="50%" text-anchor="middle">FREEDOM GENERATION</textPath>
+</text>
+<text fill="#0E412F" font-family="Arial, Helvetica, sans-serif" font-size="55" font-weight="700" letter-spacing="9">
+  <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">SCHOOL SYSTEM</textPath>
+</text>
+<circle cx="122" cy="512" r="12" fill="#C49A55"/>
+<circle cx="902" cy="512" r="12" fill="#C49A55"/>
+
 </svg>

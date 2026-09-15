@@ -1,11 +1,20 @@
 @import "tailwindcss";
 
-/* Design system — locked per CLAUDE.md / memory file §35 */
+/* Approved Freedom Generation identity tokens. */
 @theme {
   --color-paper: #fffefa;
   --color-ink: #121212;
-  --color-green: #01411c;
-  --color-green-light: #0a5c2e;
+  --color-forest: #124f38;
+  --color-deep-forest: #0e412f;
+  --color-sage: #71866a;
+  --color-ochre: #c49a55;
+  --color-terracotta: #b86f56;
+  --color-dusty-blue: #63869a;
+  --color-plum: #865c67;
+  --color-fruit-red: #b71c1c;
+  /* Compatibility aliases used throughout the existing UI. */
+  --color-green: #124f38;
+  --color-green-light: #0e412f;
   --color-clay: #e8ddd0;
   --color-stone: #d8d0c5;
   --color-error: #8b1e1e;
@@ -28,6 +37,10 @@ body {
   font-size: 1.0625rem; /* 17px body, editorial */
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  color: var(--color-green);
 }
 
 @media (min-width: 768px) {
@@ -54,8 +67,12 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-green);
+  outline: 2px solid var(--color-ochre);
   outline-offset: 2px;
+}
+
+.footer-links a:hover {
+  color: var(--color-ochre);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -68,6 +85,46 @@ a {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Shared framing keeps major photography inside the paper-colored canvas. */
+:root {
+  --site-header-height: 5.5rem;
+  --hero-viewport-breathing-room: 2.5rem;
+  --hero-viewport-width-offset: 14.2222rem; /* (5.5rem + 2.5rem) × 16 ÷ 9 */
+  --media-frame-inline-inset: clamp(1.75rem, 5vw, 5rem);
+  --media-frame-max-width: 80rem;
+}
+
+section[id] {
+  scroll-margin-top: calc(
+    var(--site-header-height) + var(--hero-viewport-breathing-room)
+  );
+}
+
+.media-frame,
+.hero-frame {
+  width: calc(100% - var(--media-frame-inline-inset));
+  max-width: var(--media-frame-max-width);
+  margin-inline: auto;
+}
+
+/* On short screens, the 16:9 hero narrows until it fits below the header.
+   177.7778 viewport-height units convert the available height to 16:9 width. */
+@media (min-width: 640px) {
+  .hero-frame {
+    width: min(
+      calc(100% - var(--media-frame-inline-inset)),
+      var(--media-frame-max-width),
+      calc(177.7778vh - var(--hero-viewport-width-offset))
+    );
+    width: min(
+      calc(100% - var(--media-frame-inline-inset)),
+      var(--media-frame-max-width),
+      calc(177.7778svh - var(--hero-viewport-width-offset))
+    );
+    max-width: none;
   }
 }
 

@@ -50,7 +50,7 @@ export default async function TeachingPage({
         ))}
       </div>
 
-      <section className="mt-14 border-t border-stone pt-8">
+      <section className="mt-14 border-t border-dusty-blue pt-8">
         <p className="font-sans text-sm leading-relaxed text-ink/80">
           {teaching.governance[locale]}
         </p>
