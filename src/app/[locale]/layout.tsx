@@ -44,6 +44,16 @@ export async function generateMetadata({
       default: site.name[locale],
       template: `%s — ${site.name[locale]}`,
     },
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/brand/fg-favicon.svg", type: "image/svg+xml" },
+        { url: "/brand/fg-favicon-512.png", type: "image/png", sizes: "512x512" },
+      ],
+      apple: [
+        { url: "/brand/apple-touch-icon.png", type: "image/png", sizes: "180x180" },
+      ],
+    },
   };
 }
 
@@ -52,6 +62,7 @@ function schoolJsonLd(locale: Locale) {
   return {
     "@context": "https://schema.org",
     "@type": "School",
+    logo: `${site.url}/brand/fg-app-icon-1024.png`,
     name: site.name[locale],
     legalName: site.legalName,
     url: `${site.url}/${locale}/`,

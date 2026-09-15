@@ -18,7 +18,15 @@ export function journalArticleJsonLd(entry: JournalEntry, locale: Locale) {
     inLanguage: locale === "ur" ? "ur-PK" : "en",
     mainEntityOfPage: {"@type": "WebPage", "@id": pageUrl},
     author: {"@type": authorType, name: entry.author},
-    publisher: {"@type": "School", name: site.name[locale], url: site.url},
+    publisher: {
+      "@type": "School",
+      name: site.name[locale],
+      url: site.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${site.url}/brand/fg-app-icon-1024.png`,
+      },
+    },
     ...(entry.coverId
       ? {image: `${site.url}${media(entry.coverId).file}`}
       : {}),

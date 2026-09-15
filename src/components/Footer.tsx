@@ -30,9 +30,11 @@ export function Footer({ locale }: { locale: Locale }) {
               {ui.footer.staffNote[locale]}
             </p>
             <img
-              src="/brand/fg-badge.svg"
+              src="/brand/fg-badge.webp"
               alt="Freedom Generation School System badge"
-              className="mt-6 size-24 rounded-full bg-paper md:size-28"
+              width={2048}
+              height={2048}
+              className="mt-6 size-24 md:size-28"
             />
           </div>
           <address className="not-italic font-sans text-sm leading-relaxed">
