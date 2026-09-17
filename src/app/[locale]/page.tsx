@@ -44,7 +44,7 @@ export default async function HomePage({
   return (
     <div className="pb-4">
       {/* 2 — Hero, framed, kicker only */}
-      <section className="hero-frame relative">
+      <section className="media-frame relative">
         <Photo
           id="HERO-01"
           locale={locale}
